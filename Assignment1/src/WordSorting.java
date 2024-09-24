@@ -1,64 +1,57 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class WordSorting {
+
     public static void main(String[] args) {
-        // Reuse the soliloquy text from Problem 3
-        String text = "To be or not to be, that is the question;"
-                    + " Whether 'tis nobler in the mind to suffer"
-                    + " the slings and arrows of outrageous fortune,"
-                    + " or to take arms against a sea of troubles,"
-                    + " and by opposing end them?";
+        String soliloquy = "To be, or not to be, that is the question:\n"
+                + "Whether 'tis nobler in the mind to suffer\n"
+                + "The slings and arrows of outrageous fortune,\n"
+                + "Or to take arms against a sea of troubles\n"
+                + "And by opposing end them.";
 
-        // Extract words from the text
-        String[] words = extractWords(text);
+        // Define words as sequences of alphabetic characters
+        List<String> words = extractWords(soliloquy);
 
-        // Sort the words using Bubble Sort
-        bubbleSort(words);
+        // Convert to array for sorting
+        String[] wordsArray = words.toArray(new String[0]);
 
-        // Display the sorted words
-        System.out.println("Sorted words in alphabetical order:");
-        for (String word : words) {
+        // Sort the words using bubble sort
+        bubbleSort(wordsArray);
+
+        // Print sorted words
+        for (String word : wordsArray) {
             System.out.println(word);
         }
     }
 
-    /**
-     * Definition of a word:
-     * A "word" is defined as any sequence of contiguous alphabetic characters (a-z, A-Z).
-     * The program removes all non-alphabetic characters (such as punctuation and numbers)
-     * and treats words in a case-insensitive manner by converting everything to lowercase.
-     * This means that "Hello" and "hello" are considered the same word for sorting purposes.
-     */
-    
-    // Method to extract words from the text
-    private static String[] extractWords(String text) {
-        // Convert to lowercase and replace all non-alphabetical characters with a space
-        text = text.toLowerCase().replaceAll("[^a-z]", " ");
+    private static List<String> extractWords(String text) {
+        List<String> words = new ArrayList<>();
+        String[] tokens = text.split("[^a-zA-Z]+"); // Split by non-alphabetic characters
 
-        // Split the text by spaces to extract words
-        String[] words = text.trim().split("\\s+");
+        for (String token : tokens) {
+            if (!token.isEmpty()) {
+                words.add(token.toLowerCase()); // Convert to lowercase
+            }
+        }
 
         return words;
     }
 
-    // Bubble Sort implementation
-    private static void bubbleSort(String[] words) {
-        int n = words.length;
+    private static void bubbleSort(String[] array) {
         boolean swapped;
-
-        // Repeat until no more swaps are needed
         do {
             swapped = false;
-            for (int i = 0; i < n - 1; i++) {
-                // Compare adjacent elements
-                if (words[i].compareTo(words[i + 1]) > 0) {
-                    // Swap if the first element is greater than the second
-                    String temp = words[i];
-                    words[i] = words[i + 1];
-                    words[i + 1] = temp;
+            for (int i = 0; i < array.length - 1; i++) {
+                if (array[i].compareTo(array[i + 1]) > 0) {
+                    // Swap the elements
+                    String temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
                     swapped = true;
                 }
             }
-            // Each iteration ensures the largest element is at the end
-            n--;
         } while (swapped);
     }
 }

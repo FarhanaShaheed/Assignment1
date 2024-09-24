@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class WordSorting {
@@ -11,7 +10,7 @@ public class WordSorting {
                 + "Or to take arms against a sea of troubles\n"
                 + "And by opposing end them.";
 
-        // Define words as sequences of alphabetic characters
+        // Extract words based on the defined criteria
         List<String> words = extractWords(soliloquy);
 
         // Convert to array for sorting
@@ -26,19 +25,35 @@ public class WordSorting {
         }
     }
 
+    /**
+     * Extracts words from the given text.
+     * A "word" is defined as a sequence of alphabetic characters.
+     * Words are case-insensitive and converted to lowercase.
+     * Non-alphabetic characters are treated as delimiters.
+     * 
+     * @param text The input text to extract words from.
+     * @return A list of extracted words.
+     */
     private static List<String> extractWords(String text) {
         List<String> words = new ArrayList<>();
-        String[] tokens = text.split("[^a-zA-Z]+"); // Split by non-alphabetic characters
+        // Split by non-alphabetic characters
+        String[] tokens = text.split("[^a-zA-Z]+");
 
         for (String token : tokens) {
             if (!token.isEmpty()) {
-                words.add(token.toLowerCase()); // Convert to lowercase
+                // Convert to lowercase
+                words.add(token.toLowerCase());
             }
         }
 
         return words;
     }
 
+    /**
+     * Sorts an array of strings using the bubble sort algorithm.
+     * 
+     * @param array The array of strings to be sorted.
+     */
     private static void bubbleSort(String[] array) {
         boolean swapped;
         do {

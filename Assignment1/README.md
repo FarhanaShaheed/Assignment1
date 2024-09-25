@@ -1,3 +1,7 @@
+# Personal Data
+- Name: Farhana Binta Shaheed
+- Matriculation Number: 7216429
+
 # Homework Assignment 1
 
 This project contains solutions for Homework Assignment 1, which includes several Java programs. The solutions are written using Eclipse IDE.
